@@ -50,7 +50,7 @@ public class OrderService {
                 Calendar twoYearsAgo = GregorianCalendar.getInstance();
                 twoYearsAgo.add(Calendar.YEAR,-2);
                 if(customer.getCreationDate().getTime() < twoYearsAgo.getTimeInMillis()) {
-                    nonGrocTotCost = nonGrocTotCost.subtract(nonGrocTotCost.multiply(new BigDecimal(0.5)));
+                    nonGrocTotCost = nonGrocTotCost.subtract(nonGrocTotCost.multiply(new BigDecimal(0.05)));
                 }
                 break;
             case "ROLE_PARTNER":
