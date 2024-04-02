@@ -31,4 +31,15 @@ There are 3 identified roles - Employee, Partner and Customer. These are assigne
 
 Unit test cases are added and mocked at controller and service layer.
 
+# API collection
+
+Attached the API collection named as shopping_cart.postman_collection
+
+1) Signup - API will register the user and role - ROLE_PARTNER/ ROLE_CUSTOMER / ROLE_EMPLOYEE
+2) Login - API to login the user and create a login session
+3) Shopping Items - API to fetch all Items and related details
+4) Order create - API to create order by passing the list of Items and quanity. This API call will return the total cost and the discount calculated 
+
+
+
 
