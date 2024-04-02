@@ -46,10 +46,5 @@ public class HomeController {
                 new String[]{MediaType.APPLICATION_JSON_VALUE}).body(json);
     }
 
-    @RequestMapping(value = "/home",method = RequestMethod.POST)
-
-    public ResponseEntity<String> homepost(){
-        return ResponseEntity.ok().build();
-    }
 
 }

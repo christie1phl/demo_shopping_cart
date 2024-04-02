@@ -18,15 +18,29 @@ public class OrderServiceTest {
 
 
     @InjectMocks
-    private OrderService orderService;
-
+    OrderService orderService;
 
     @Mock
-    private ItemRepository itemRepository;
+    UserRepository userRepository;
+
+    @Mock
+    ItemRepository itemRepository;
 
     @Test
-    public void createOrder_apply_discount_successfully(){
+    public void createOrder_apply_discount_successfully_customer(){
 
+        CustOrder responseOrder = prepareTestOrder("ROLE_CUSTOMER");
+        assertThat(responseOrder.getDiscountedAmount().equals(new BigDecimal(200)));
+
+        responseOrder = prepareTestOrder("ROLE_PARTNER");
+        assertThat(responseOrder.getDiscountedAmount().equals(new BigDecimal(200)));
+
+        responseOrder = prepareTestOrder("ROLE_EMPLOYEE");
+        assertThat(responseOrder.getDiscountedAmount().equals(new BigDecimal(200)));
+    }
+
+
+    private CustOrder prepareTestOrder(String role){
         List<Item> items = List
                 .of(new Item("100","Apples","Apples",
                                 "fruits","grocery",new BigDecimal(200)),
@@ -39,10 +53,16 @@ public class OrderServiceTest {
                         new Item("100","Skirt","Skirt",
                                 "Clothes","Clothes",new BigDecimal(400)));
         when(itemRepository.findById(any())).thenReturn(Optional.ofNullable(items.get(0)));
-       List<OrderDetail> lst = List.of(new OrderDetail(new Item(3),4),
-               new OrderDetail(new Item(2),4),
-               new OrderDetail(new Item(1),4));
-        CustOrder responseOrder = orderService.processOrder(new CustOrder(lst),"ROLE_EMPLOYEE","chrisp");
-        assertThat(responseOrder.getDiscountedAmount().equals(new BigDecimal(200)));
+        Customer cust = new Customer("rony","ronyPass","Rony","ronShabby@gmail.com","",new Date());
+        cust.setRoles(Set.of(new Roles(role)));
+        if(role.equalsIgnoreCase("ROLE_CUSTOMER")) {
+            when(userRepository.findByUsernameOrEmail("rony", "rony")).thenReturn(
+                    cust);
+        }
+        List<OrderDetail> lst = List.of(new OrderDetail(new Item(3),4),
+                new OrderDetail(new Item(2),4),
+                new OrderDetail(new Item(1),4));
+        CustOrder responseOrder = orderService.processOrder(new CustOrder(lst),role,"rony");
+        return responseOrder;
     }
 }

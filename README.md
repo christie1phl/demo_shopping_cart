@@ -34,6 +34,11 @@ There are 3 identified roles - Employee, Partner and Customer. These are assigne
 
 Unit test cases are added and mocked at controller and service layer. 
 
+# Test Coverage
+
+JaCoCo test coverage tool has been used to check code coverage. I added the plugin into maven and simple mvn clean, mvn test to run the coverage. 
+The report is generated under the target folder -> demo_shopping_cart/demo/target/site/jacoco. Mostly the controller and service classes are nearly 100% coverage
+
 
 # API collection:
 

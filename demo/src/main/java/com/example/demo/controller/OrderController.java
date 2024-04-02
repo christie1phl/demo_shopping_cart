@@ -8,6 +8,7 @@ import jakarta.servlet.http.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.security.core.*;
+import org.springframework.security.core.annotation.*;
 import org.springframework.security.core.context.*;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.web.bind.annotation.*;
@@ -28,16 +29,13 @@ public class OrderController {
 
 
     @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public ResponseEntity<String> createOrder(HttpServletRequest request, @RequestBody CustOrder custOrder){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    public ResponseEntity<CustOrder> createOrder(HttpServletRequest request, @RequestBody CustOrder custOrder,@AuthenticationPrincipal UserDetails userDetails ){
+       // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       // UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String role = userDetails.getAuthorities().stream().findFirst().get().getAuthority();
         custOrder = orderService.processOrder(custOrder,role,userDetails.getUsername());
 
-        Gson gson = new Gson();
-        String json = gson.toJson(custOrder);
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE,
-                new String[]{MediaType.APPLICATION_JSON_VALUE}).body(json);
+        return ResponseEntity.ok().body(custOrder);
     }
 
 

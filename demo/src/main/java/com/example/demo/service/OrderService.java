@@ -58,10 +58,10 @@ public class OrderService {
                 break;
         }
         BigDecimal totalCost = nonGrocTotCost.add(grocTotCost);
-        custOrder.setTotalCost(totalCost.setScale(2, RoundingMode.HALF_UP));
+        custOrder.setTotalCost(totalCost.setScale(2, RoundingMode.HALF_DOWN));
         BigDecimal disCountedTotal = totalCost.divide(new BigDecimal(100))
-                .setScale(0,RoundingMode.HALF_EVEN).multiply(new BigDecimal(5));
-        custOrder.setDiscountedAmount(totalCost.subtract(disCountedTotal).setScale(2, RoundingMode.HALF_UP));
+                .setScale(0,RoundingMode.HALF_DOWN).multiply(new BigDecimal(5));
+        custOrder.setDiscountedAmount(totalCost.subtract(disCountedTotal).setScale(2, RoundingMode.HALF_DOWN));
 
       //  orderRepository.saveAndFlush(custOrder);
         return custOrder;
