@@ -46,4 +46,7 @@ Attached the API collection named as shopping_cart.postman_collection
 
 
 
+# Run the application.
 
+Open terminal. Traverse to the code folder. Run "mvn spring-boot:run" to get the application up and running.
+ 
