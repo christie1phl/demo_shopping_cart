@@ -1,4 +1,4 @@
-# demo_shopping_cart
+# demo_shopping_cart:
 
 This is a demo project on a shopping cart application containing APIs that facilitate user sign up, login, view/add shopping items onto cart. 
 The goal is to apply discount based on following set of rules 
@@ -11,14 +11,6 @@ On a retail website, the following discounts apply:
 5.	The percentage based discounts do not apply on groceries.
 6.	A user can get only one of the percentage based discounts on a bill.
 
-# Technology stack:
-
-1) Spring Boot3.2.4
-2) JDK 17
-3) H2 databased (in memory store)
-4) Mockito/Junit for unit tests
-5) Spring security.
-
 Primarily we have 3 usecases as below
 
 1) Customer flow - to process API calls for user signup and login authentication
@@ -29,9 +21,21 @@ Primarily we have 3 usecases as below
 There are 3 identified roles - Employee, Partner and Customer. These are assigned while signup. Applicable discounts will be based on the user roles according to business rules above
 
 
-Unit test cases are added and mocked at controller and service layer.
+# Technology stack:
 
-# API collection
+1) Spring Boot3.2.4
+2) JDK 17
+3) H2 databased (in memory store)
+4) Mockito/Junit for unit tests
+5) Spring security.
+
+
+# Testing:
+
+Unit test cases are added and mocked at controller and service layer. 
+
+
+# API collection:
 
 Attached the API collection named as shopping_cart.postman_collection
 
