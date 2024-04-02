@@ -11,13 +11,13 @@ On a retail website, the following discounts apply:
 5.	The percentage based discounts do not apply on groceries.
 6.	A user can get only one of the percentage based discounts on a bill.
 
-Technology stack:
+# Technology stack:
 
-Spring Boot3.2.4
-JDK 17
-H2 databased (in memory store)
-Mockito/Junit for unit tests
-Spring security.
+1) Spring Boot3.2.4
+2) JDK 17
+3) H2 databased (in memory store)
+4) Mockito/Junit for unit tests
+5) Spring security.
 
 Primarily we have 3 usecases as below
 
@@ -26,4 +26,9 @@ Primarily we have 3 usecases as below
 3) Order processing - to process a customer order and calculate the discount based on above listed business rules.
 
 
+There are 3 identified roles - Employee, Partner and Customer. These are assigned while signup. Applicable discounts will be based on the user roles according to business rules above
+
+
 Unit test cases are added and mocked at controller and service layer.
+
+
